@@ -46,7 +46,7 @@ object Strings {
       case Some((Some("-"), x)) if x.dropWhile(_.toString == "0").length > 10 || - x.toLong < Int.MinValue  => Int.MinValue
       case Some((_, x)) if x.dropWhile(_.toString == "0").length > 10 || x.toLong > Int.MaxValue =>  Int.MaxValue
       case Some((Some("-"), x))  =>  - x.toInt
-      case Some((_, x)) => x.toInt
+      case Some((_, x)) => x.toIn t
       case None  => 0
     }
   }
