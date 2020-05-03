@@ -43,6 +43,38 @@ object Additions {
       res.next()
     }
 
+    /**
+     * we employ a strategy that is similar to BINARY SEARCH. but we have two pointers (ptr1, ptr2) instead of one.
+     * we start at the mid point. but what is the mid point here for a two pointer approach?
+     * ptr1 = START and ptr2 = START+1 is the low point. that is the lowest 2sum number you can generate.
+     * ptr1 = END-1 and ptr2 = END is the high point. that is the highest 2 sum number you can generate.
+     * ptr1 = START and ptr2 = END is the mid point.
+     * now after the mid point if the resultant number matches target return the result.
+     * else if number is lesser than target then we can increase ptr2 to increase our resultant value.
+     * if it is lower we can reduce ptr2 to reduce our resultant value.
+     *
+     * complexity = N and not log n. because worst case ptr1 should reach ptr2 or vice versa which is O(N).
+     * @param numbers
+     * @param target
+     * @return
+     */
+    def twoSumSortedApproach(numbers: Array[Int], target: Int): Array[Int] = {
+      var (ptr1, ptr2) = (0, numbers.length-1)
+      while(ptr1 != ptr2) {
+        val res = numbers(ptr1) + numbers(ptr2)
+        println((ptr1, ptr2, res))
+        if (res == target) {
+           return Array(ptr1+1, ptr2+1)
+        } else if (res < target) {
+          ptr2 -= 1
+        } else {
+          ptr1 += 1
+        }
+      }
+      Array(-1,-1)
+    }
+
+
   }
 
 
