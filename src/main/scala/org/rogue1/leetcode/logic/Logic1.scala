@@ -9,4 +9,37 @@ object Logic1 {
   }
 
 
+  /**
+   * transpose is common operation on matrix.
+   * the swap block must only be called for unique combinations of indexes.
+   *
+   *
+   * @param matrix
+   * @return
+   */
+  def inlineTranspose(matrix: Array[Array[Int]]): Unit = {
+    for {
+      i <- matrix.indices
+      j <- i+1 until matrix.length // it should not be matrix.indices because the swap operation will be called for the
+      // any index  (for eg: (1,2)) will be called twice. and this will result in reversing the swap.
+    } {
+      val tmp = matrix(i)(j)
+      matrix(i)(j) = matrix(j)(i)
+      matrix(j)(i) = tmp
+    }
+  }
+
+
+  def transpose(matrix: Array[Array[Int]]): Array[Array[Int]] = {
+    val arr = Array.ofDim[Int](matrix.length, matrix(0).length)
+    for {
+      i <- matrix.indices
+      j <- matrix.indices
+    } {
+      arr(j)(i) = matrix(i)(j)
+    }
+    arr
+  }
+
+
 }

@@ -2,6 +2,7 @@ package org.rogue1.leetcode.basics
 
 object BinarySearch {
 
+  @scala.annotation.tailrec
   def search(arr: Array[Int], start: Int, end: Int, num: Int): Boolean  = {
     if (end < start) {
       val mid = start + ((end - start)/2)
