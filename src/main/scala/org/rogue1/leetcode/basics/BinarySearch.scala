@@ -14,4 +14,13 @@ object BinarySearch {
     }
   }
 
+   /*
+    * if index(parent) = N, index(left child) = 2*N+1
+    * if index(parent) = N, index(right child) = 2*N+2
+    * if index(child) = N, index(parent) = (N-1)/2 (integer division with truncation)
+    */
+  def arrayReprOfBST(): Unit = {
+
+  }
+
 }

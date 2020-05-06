@@ -25,7 +25,12 @@ object CopyListRandomPtr {
   }
 
   /**
+   * the main challenge in this solution is that Node class equality works on object identity (hashcode of the object).
+   * we cannot change that. so in the DFS walk using the visited node you should use original node's object.
+   * not in the new cloned object.
    *
+   * The walk method has to return the new cloned object. the easiest way to facilitate this is to use HashMap instead of
+   * a list to cache the visited nodes.
    * @param head
    * @return
    */

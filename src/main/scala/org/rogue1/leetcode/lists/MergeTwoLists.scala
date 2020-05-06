@@ -8,7 +8,6 @@ object MergeTwoLists {
 
   class ListNode(var _x: Int = 0) {
     val visited = mutable.Map[String, String]()
-    visited()
     var next: ListNode = null
     var x: Int = _x
   }
