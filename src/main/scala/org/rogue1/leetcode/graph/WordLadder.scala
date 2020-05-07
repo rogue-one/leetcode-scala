@@ -13,18 +13,7 @@ object WordLadder {
   }
 
 
-  def build(startWord: String, )
 
-
-  def search(startNode: GraphNode,
-             endNode: GraphNode,
-             visitedNode: List[GraphNode]): List[List[GraphNode]] = {
-    if(startNode.children.contains(endNode)) {
-      List(startNode :: visitedNode)
-    } else {
-      startNode.children.flatMap(x => search(x, endNode, startNode :: visitedNode))
-    }
-  }
 
   def search1(word: String,
               endWord: String,
@@ -37,21 +26,7 @@ object WordLadder {
     }
   }
 
-  def bfs(startWord: String,
-          endWord: String,
-          wordList: List[String]): List[String] = {
-    val queue = new Queue()
-    queue.enqueue(startWord)
-    while(queue.nonEmpty) {
-      val node = queue.dequeue()
-      if (node == endWord) {
-        ""
-      }
-      val words = wordList.filterNot(queue.visited.contains).filter(isNext(_, node))
-      queue.enqueueAll(words : _*)
 
-    }
-  }
 
 
   def isNext(s1: String, s2: String): Boolean = {
