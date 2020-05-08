@@ -2,6 +2,14 @@ package org.rogue1.leetcode.basics
 
 object BinarySearch {
 
+  /**
+   * the recursive call should employ only mid - 1 and mid + 1 because that is a way to avoid infinite loops
+   * @param arr
+   * @param start
+   * @param end
+   * @param num
+   * @return
+   */
   @scala.annotation.tailrec
   def search(arr: Array[Int], start: Int, end: Int, num: Int): Boolean  = {
     if (end < start) {
