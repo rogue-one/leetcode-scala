@@ -66,7 +66,7 @@ object Additions {
         val res = numbers(ptr1) + numbers(ptr2)
         println((ptr1, ptr2, res))
         if (res == target) {
-           return Array(ptr1+1, ptr2+1)
+          return Array(ptr1+1, ptr2+1)
         } else if (res < target) {
           ptr2 -= 1
         } else {
@@ -128,31 +128,32 @@ object Additions {
 
 
     def threeSum2Ptr(nums: Array[Int]): List[List[Int]] = {
-      import scala.collection.mutable
-      nums.sortInPlaceWith((x,y) => x < y)
-      def twoSum(num1: Int, idx1: Int): List[List[Int]] = {
-        println(s"$num1, $idx1")
-        var (lo, hi) = ((idx1 + 1), nums.length - 1)
-        var res = mutable.Set[List[Int]]()
-        while(lo < hi) {
-          val l1 = List(num1, nums(lo), nums(hi)).sorted
-          val sum1 = num1 + nums(lo) + nums(hi)
-          if((sum1 == 0) && !res(l1)) {
-            res.add(l1)
-          } else if (sum1 < 0) {
-            lo += 1
-          } else  {
-            hi -= 1
+      def search(ptr1: Int, ptr2: Int, exc: Int): List[List[Int]] = {
+        if (ptr1 >= ptr2) { Nil }
+        else if (ptr1 == exc) { search(ptr1 + 1, ptr2, exc) }
+        else if (ptr2 == exc) { search(ptr1, ptr2-1, exc) }
+        else {
+          val sum = nums(ptr1) + nums(ptr2) + nums(exc)
+          if (sum == 0) {
+            List(nums(ptr1), nums(ptr2), exc) :: (search(ptr1+1, ptr2, exc) ++ search(ptr1, ptr2-1, exc))
+          }
+          else {
+            search(ptr1+1, ptr2, exc) ++ search(ptr1, ptr2-1, exc)
           }
         }
-        res.toList
       }
-      for {
-        (x1, idx1) <- nums.zipWithIndex.toList if (idx1 == 0 || nums(idx1) != nums(idx1-1))
-        res <- twoSum(x1, idx1)
-      } yield res
+      def process(idx: Int): (Int, Int) = {
+        val data = nums.indices.filterNot(_ == idx)
+        data.min -> data.max
+      }
+      nums
+        .zipWithIndex
+        .toList
+        .flatMap({ case (x, idx) if x < 0 =>  process(idx) match { case (x,y) => search(x,y, idx) }})
+      }
+
     }
-  }
+
 
 
 

@@ -1,15 +1,18 @@
 package org.rogue1.leetcode.basics
 
+import scala.collection.mutable
+
 object Subsequences {
 
-  def allPossibleSubsequencesSize3(array: Array[String]): List[List[String]] = {
+  def allPossibleSubsequencesSize3(test: Array[String]): Seq[List[String]] = {
     for {
-      i <- array.indices.toList
-      j <- ((i + 1) until (array.length - 1))
-      k <- ((j+1) until (array.length))
+      i <- test.indices
+      j <- ((i + 1) until (test.length - 1))
+      k <- ((j+1) until (test.length))
     } yield {
-      array(i) :: array(j) :: array(k) :: Nil
+      test(i) :: test(j) :: test(k) :: Nil
     }
   }
+
 
 }
