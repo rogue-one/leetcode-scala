@@ -9,11 +9,11 @@ object Remove2SubstrOnlyVowels {
 
   def vowelOnly(str: String): Int = {
     val prefixVowel = str.takeWhile(vowels(_))
-    val sufficVowel = str.reverse.takeWhile(vowels(_))
+    val suffixVowel = str.reverse.takeWhile(vowels(_))
     val midStr = str.dropWhile(vowels(_)) + str.dropWhile(vowels(_))
     val vowelOnlyMidStr = reduce(midStr, midStr.filterNot(vowels(_)).length)
     println(vowelOnlyMidStr)
-    prefixVowel.length + sufficVowel.length + vowelOnlyMidStr.maxBy(_.length).length
+    prefixVowel.length + suffixVowel.length + vowelOnlyMidStr.maxBy(_.length).length
   }
 
   /**
