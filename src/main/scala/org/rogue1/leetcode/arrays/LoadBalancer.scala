@@ -39,17 +39,23 @@ package org.rogue1.leetcode.arrays
  */
 object LoadBalancer {
 
+  /**
+   * this pretty much a standard two pointer solution (but uses recursion instead of while loops.)
+   * @param arr
+   * @return
+   */
   def loadBalance(arr: Array[Int]): Boolean = {
     val total = arr.sum
     var (leftSum,rightSum) = (arr(0), arr(arr.length-1))
     @scala.annotation.tailrec
     def process(left: Int, right: Int): Boolean = {
-       (leftSum, rightSum) = (leftSum+arr(left), rightSum+arr(right))
+      leftSum = leftSum+arr(left)
+      rightSum = rightSum+arr(right)
       val midSum = arr.drop(left).dropRight(arr.length - right-1).sum
       if (leftSum == rightSum && midSum == leftSum) {
-        return true
+         true
       } else if (midSum < leftSum || midSum < rightSum) {
-        return false
+         false
       } else {
         if (leftSum < rightSum) {
           process(left+1, right)
@@ -60,5 +66,12 @@ object LoadBalancer {
     }
     process(1, arr.length-2)
   }
+
+  def loadBalancer(arr: Array[Int]): Boolean = {
+    val totalSum = arr.sum
+
+  }
+
+
 
 }
